@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+
+import kr.co.itcen.bookmall.vo.CartVo;
 
 
-import kr.co.itcen.bookmall.vo.Order_BookVo;
-
-public class Order_BookDao {
-	public Boolean insert(Order_BookVo vo1) {
+public class CartDao {
+	public Boolean insert(CartVo vo1) {
 		Connection connection =null;
 		PreparedStatement pstmt = null;
 		Statement stmt =null;
@@ -21,12 +22,12 @@ public class Order_BookDao {
 		
 		try {
 			connection = getConnection();
-			String sql= "insert into order_book values(null,?,?,?)";
+			String sql= "insert into cart values(null,?,?,?)";
 			pstmt = connection.prepareStatement(sql);
 			
-			pstmt.setLong(1, vo1.getBook_no());
-			pstmt.setLong(2, vo1.getBook_count());
-			pstmt.setLong(3, vo1.getOrder_no());
+			pstmt.setLong(1, vo1.getBook_count());
+			pstmt.setLong(2, vo1.getUser_no());
+			pstmt.setLong(3, vo1.getBook_no());
 
 			
 			int count = pstmt.executeUpdate();
@@ -37,33 +38,7 @@ public class Order_BookDao {
 			if(rs.next()) {
 				Long no = rs.getLong(1);
 				vo1.setNo(no);
-				
 			}
-			
-			String sql1 = "select b.price" + 
-					"from order_book a, book b" + 
-					"where b.no = a.book_no";
-			pstmt = connection.prepareStatement(sql1);
-			rs=pstmt.executeQuery();
-			
-			long total_price = 0; 
-			
-			 while(rs.next()) {
-				 long price = rs.getLong(1);
-				 total_price = (long) (price*vo1.getBook_count());
-			 }
-			 
-			 String sql2 = "select price from orders";
-			 pstmt = connection.prepareStatement(sql2);
-				rs=pstmt.executeQuery(); 
-				
-				
-				 while(rs.next()) {
-					 
-				 }
-				 
-			
-			
 			
 		} catch (SQLException e) {
 			System.out.println("error: "+e);
@@ -98,30 +73,28 @@ public class Order_BookDao {
 		try {
 			connection = getConnection();
 
-			String sql = "select a.book_no,b.title,a.book_count"
-					+ " from order_book a, book b"
-					+ " where a.book_no =b.no";
+			String sql ="select a.title, b.book_count , a.price*b.book_count "
+					+ "from book a , cart b  "
+					+ "where a.no =b.book_no order by b.no asc";
 			pstmt = connection.prepareStatement(sql);
-			
+
+
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Long no = rs.getLong(1);
-				String book_title=rs.getString(2);
-				Long book_count=rs.getLong(3);
+				String title =rs.getString(1);
+				Long book_count =rs.getLong(2);
+				Long price =rs.getLong(3);
 
-				
-				
+				 
 				ArrayList temp = new ArrayList();
-				temp.add(no);
-				temp.add(book_title);
+				temp.add(title);
 				temp.add(book_count);
+				temp.add( price);
 
 
 				result.add(temp);
 			}
-			
-			
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		} finally {
@@ -164,7 +137,7 @@ public class Order_BookDao {
 //		try {
 //			connection = getConnection();
 //
-//			String sql = "delete from order_book";
+//			String sql = "delete from cart";
 //			pstmt = connection.prepareStatement(sql);
 //
 //			pstmt.executeUpdate();

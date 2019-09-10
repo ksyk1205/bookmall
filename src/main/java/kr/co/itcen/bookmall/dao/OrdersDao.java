@@ -63,8 +63,8 @@ public class OrdersDao {
 		return result;	
 
 	}
-	public List<OrdersVo> getList() {
-		List<OrdersVo> result = new ArrayList<OrdersVo>();
+	public ArrayList getList() {
+		ArrayList result = new ArrayList();
 		
 		Connection connection = null;
 		PreparedStatement pstmt = null;

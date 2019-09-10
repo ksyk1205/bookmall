@@ -16,7 +16,8 @@ public class CategoryDaoTest {
 
 	}
 
-//	private static void deleteAllTest(){
+
+	//	private static void deleteAllTest(){
 //		new CategoryDao().delete();
 //	}
 	private static void insertTest() {
@@ -50,4 +51,5 @@ public class CategoryDaoTest {
 			System.out.println(vo);
 		}
 	}
+
 }

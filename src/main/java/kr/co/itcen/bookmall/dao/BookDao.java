@@ -64,13 +64,13 @@ public class BookDao {
 		return result;
 	}
 
-	public List<BookVo> getList() {
-		List<BookVo> result = new ArrayList<BookVo>();
+	public ArrayList getList() {
+		ArrayList result = new ArrayList();
 
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		try {
 			connection = getConnection();
 
@@ -84,14 +84,14 @@ public class BookDao {
 				String title = rs.getString(2);
 				Long price = rs.getLong(3);
 				Long category_no = rs.getLong(4);
+				
+				ArrayList temp = new ArrayList();
+				temp.add(no);
+				temp.add(title);
+				temp.add(price);
+				temp.add(category_no);
 
-				BookVo vo= new BookVo();
-				vo.setNo(no);
-				vo.setTitle(title);
-				vo.setPrice(price);
-				vo.setCategory_no(category_no);
-
-				result.add(vo);
+				result.add(temp);
 			}
 		} catch (SQLException e) {
 			System.out.println("error:" + e);

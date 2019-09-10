@@ -1,5 +1,6 @@
 package kr.co.itcen.bookmall.dao.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.itcen.bookmall.dao.OrdersDao;
@@ -30,7 +31,7 @@ public class OrdersDaoTest {
 			OrdersVo vo1 = new OrdersVo();
 			vo1.setPrice((long) 15000);
 			vo1.setDeli_address("서울시-----123");
-			vo1.setUser_no((long) 17);
+			vo1.setUser_no((long) 1);
 			dao.insert(vo1);
 			System.out.println(vo1);
 			
@@ -41,9 +42,9 @@ public class OrdersDaoTest {
 			System.out.println("==============select test===============");
 			OrdersDao dao = new OrdersDao();
 
-			List<OrdersVo> list = dao.getList();
-			for(OrdersVo vo:list) {
-				System.out.println(vo);
+			ArrayList list = dao.getList();
+			for(int i =0;i<list.size();i++) {
+				System.out.println(list.get(i));
 			}
 		}
 	}
