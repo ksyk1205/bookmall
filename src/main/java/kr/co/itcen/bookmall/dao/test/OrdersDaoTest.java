@@ -13,15 +13,8 @@ public class OrdersDaoTest {
 		public static void main(String[] args) {
 			insertTest();
 			selectTest();
-//			deleteAllTest();
+
 		}
-
-
-//		private static void deleteAllTest() {
-//			new OrdersDao().delete();
-//			
-//		}
-
 
 		private static void insertTest() {
 			System.out.println("==============insert test===============");

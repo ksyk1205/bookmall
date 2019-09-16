@@ -12,14 +12,10 @@ public class CategoryDaoTest {
 	public static void main(String[] args) {
 		insertTest();
 		selectTest();
-//		deleteAllTest();
 
 	}
 
 
-	//	private static void deleteAllTest(){
-//		new CategoryDao().delete();
-//	}
 	private static void insertTest() {
 		System.out.println("==============insert test===============");
 		

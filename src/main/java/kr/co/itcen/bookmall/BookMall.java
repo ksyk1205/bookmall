@@ -1,5 +1,6 @@
 package kr.co.itcen.bookmall;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.itcen.bookmall.dao.BookDao;
@@ -20,41 +21,41 @@ public class BookMall {
 	public static void main(String[] args) {
 		System.out.println("================category====================");
 		
-		CategoryDao cg_dao = new CategoryDao();
 
-		List<CategoryVo> cg_list = cg_dao.getList();
-		for(CategoryVo vo:cg_list) {
+		CategoryDao ct_dao = new CategoryDao();
+
+		List<CategoryVo> ct_list = ct_dao.getList();
+		for(CategoryVo vo:ct_list) {
 			System.out.println(vo);
-			
 		}
 		System.out.println("=================book========================");	
 	
 		BookDao b_dao = new BookDao();
 
-		List<BookVo> b_list = b_dao.getList();
-		for(BookVo vo:b_list) {
-			System.out.println(vo);
+		ArrayList b_list = b_dao.getList();
+		for(int i =0;i<b_list.size();i++) {
+			System.out.println(b_list.get(i));
 		}
 		System.out.println("=================order_book===================");
 		Order_BookDao ob_dao = new Order_BookDao();
 
-		List<Order_BookVo> ob_list = ob_dao.getList();
-		for(Order_BookVo vo:ob_list) {
-			System.out.println(vo);
+		ArrayList  ob_list =  ob_dao.getList();
+		for(int i =0;i< ob_list.size();i++) {
+			System.out.println( ob_list.get(i));
 		}
 		System.out.println("===================orders=====================");
 		OrdersDao o_dao = new OrdersDao();
 
-		List<OrdersVo> o_list = o_dao.getList();
-		for(OrdersVo vo:o_list) {
-			System.out.println(vo);
+		ArrayList o_list = o_dao.getList();
+		for(int i =0;i<o_list.size();i++) {
+			System.out.println(o_list.get(i));
 		}
 		System.out.println("===================cart========================");
 		CartDao c_dao = new CartDao();
 
-		List<CartVo> c_list = c_dao.getList();
-		for(CartVo vo:c_list) {
-			System.out.println(vo);
+		ArrayList c_list = c_dao.getList();
+		for(int i =0;i<c_list.size();i++) {
+			System.out.println(c_list.get(i));
 		}
 		System.out.println("===================user=========================");
 		UserDao u_dao = new UserDao();

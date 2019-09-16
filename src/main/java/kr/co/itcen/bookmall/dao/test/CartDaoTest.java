@@ -13,15 +13,8 @@ public class CartDaoTest {
 	public static void main(String[] args) {
 		insertTest();
 		selectTest();
-//		deleteAllTest();
+
 	}
-
-
-//	private static void deleteAllTest() {
-//		new CartDao().delete();
-//		
-//	}
-
 
 	private static void insertTest() {
 		System.out.println("==============insert test===============");
@@ -34,10 +27,6 @@ public class CartDaoTest {
 		vo1.setBook_no((long) 2);
 		dao.insert(vo1);
 		System.out.println(vo1);
-		
-		
-
-
 		
 	}
 

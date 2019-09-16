@@ -11,14 +11,10 @@ public class UserDaoTest {
 	public static void main(String[] args) {
 		insertTest();
 		selectTest();
-//		deleteAllTest();
+
 	}
 
 
-//	private static void deleteAllTest() {
-//		new UserDao().delete();
-//		
-//	}
 
 
 	private static void insertTest() {

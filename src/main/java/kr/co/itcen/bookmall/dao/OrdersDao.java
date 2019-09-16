@@ -73,25 +73,28 @@ public class OrdersDao {
 		try {
 			connection = getConnection();
 
-			String sql = "select no, price , deli_address,user_no"
-					+ " from orders order by no asc";
+			String sql = "select a.no,b.name ,b.email, a.price,a.deli_address from orders a, user b where a.user_no =b.no order by a.no asc";
 			pstmt = connection.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Long no = rs.getLong(1);
-				Long price =rs.getLong(2);
-				String deli_address =rs.getString(3);
-				Long user_no =rs.getLong(4);
+				String name =rs.getString(2);
+				String email=rs.getString(3);
+				Long price =rs.getLong(4);
+				String deli_address =rs.getString(5);
+				
 
-				OrdersVo vo = new OrdersVo();
-				vo.setNo(no);
-				vo.setPrice(price);
-				vo.setDeli_address(deli_address);
-				vo.setUser_no(user_no);
+				ArrayList temp = new ArrayList();
+				temp.add(no);
+				temp.add(name);
+				temp.add(email);
+				temp.add(price);
+				temp.add(deli_address);
 
-				result.add(vo);
+
+				result.add(temp);
 			}
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
@@ -128,33 +131,7 @@ public class OrdersDao {
 		return connection;
 		
 	}
-//	public void delete() {
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//			connection = getConnection();
-//
-//			String sql = "delete from orders";
-//			pstmt = connection.prepareStatement(sql);
-//
-//			pstmt.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			System.out.println("error:" + e);
-//		} finally {
-//			try {
-//				if(pstmt != null) {
-//					pstmt.close();
-//				}
-//				if(connection != null) {
-//					connection.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
+
 
 
 }

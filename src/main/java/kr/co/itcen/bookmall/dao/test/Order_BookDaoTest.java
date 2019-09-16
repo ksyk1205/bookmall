@@ -13,14 +13,8 @@ public class Order_BookDaoTest {
 	public static void main(String[] args) {
 		insertTest();
 		selectTest();
-//		deleteAllTest();
+
 	}
-
-
-//	private static void deleteAllTest() {
-//		new Order_BookDao().delete();
-//		
-//	}
 
 
 	private static void insertTest() {
@@ -34,12 +28,8 @@ public class Order_BookDaoTest {
 		vo1.setOrder_no((long) 1);
 		dao.insert(vo1);
 		System.out.println(vo1);
-		
-
-
-		
+	
 	}
-
 	
 	private static void selectTest() {
 		System.out.println("==============select test===============");

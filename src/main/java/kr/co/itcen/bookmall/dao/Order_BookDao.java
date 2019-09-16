@@ -19,6 +19,8 @@ public class Order_BookDao {
 		ResultSet rs =null;
 		Boolean result = false;
 		
+		
+		
 		try {
 			connection = getConnection();
 			String sql= "insert into order_book values(null,?,?,?)";
@@ -40,12 +42,9 @@ public class Order_BookDao {
 				
 			}
 			
-			String sql1 = "select b.price" + 
-					"from order_book a, book b" + 
-					"where b.no = a.book_no";
+			String sql1 = "select price from book where no="+vo1.getBook_no();
 			pstmt = connection.prepareStatement(sql1);
 			rs=pstmt.executeQuery();
-			
 			long total_price = 0; 
 			
 			 while(rs.next()) {
@@ -53,15 +52,24 @@ public class Order_BookDao {
 				 total_price = (long) (price*vo1.getBook_count());
 			 }
 			 
-			 String sql2 = "select price from orders";
+			 String sql2 = "select price from orders where no="+vo1.getOrder_no();
 			 pstmt = connection.prepareStatement(sql2);
 				rs=pstmt.executeQuery(); 
 				
-				
-				 while(rs.next()) {
+			 while(rs.next()) {
+				 int price =rs.getInt(1);
+					 total_price+=price;
 					 
-				 }
+			}
+			 
+			 String sql3 ="update orders set price=? where no=?";
+			
+			 pstmt = connection.prepareStatement(sql3);
+				
+			 pstmt.setLong(1, total_price);									
+			 pstmt.setLong(2, vo1.getOrder_no());
 				 
+			 pstmt.executeUpdate();
 			
 			
 			
@@ -157,33 +165,7 @@ public class Order_BookDao {
 		return connection;
 		
 	}
-//	public void delete() {
-//		Connection connection = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//			connection = getConnection();
-//
-//			String sql = "delete from order_book";
-//			pstmt = connection.prepareStatement(sql);
-//
-//			pstmt.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			System.out.println("error:" + e);
-//		} finally {
-//			try {
-//				if(pstmt != null) {
-//					pstmt.close();
-//				}
-//				if(connection != null) {
-//					connection.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
+
 
 
 }

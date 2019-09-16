@@ -74,23 +74,19 @@ public class BookDao {
 		try {
 			connection = getConnection();
 
-			String sql = "select no,title,price,category_no from book order by no asc";
+			String sql = "select a.title ,a.price from book a, category b where a.category_no = b.no order by a.title asc;";
 			pstmt = connection.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
-				Long no = rs.getLong(1);
-				String title = rs.getString(2);
-				Long price = rs.getLong(3);
-				Long category_no = rs.getLong(4);
+				String title = rs.getString(1);
+				Long price = rs.getLong(2);
+
 				
 				ArrayList temp = new ArrayList();
-				temp.add(no);
 				temp.add(title);
 				temp.add(price);
-				temp.add(category_no);
-
 				result.add(temp);
 			}
 		} catch (SQLException e) {
