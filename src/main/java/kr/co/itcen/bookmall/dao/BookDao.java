@@ -23,7 +23,7 @@ public class BookDao {
 		try {
 			connection = getConnection();
 
-			String sql = "insert into book values(null, ?,?,?)";
+			String sql = "insert into book values(null,?,?,?)";
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, vo1.getTitle());
 			pstmt.setLong(2, vo1.getPrice());

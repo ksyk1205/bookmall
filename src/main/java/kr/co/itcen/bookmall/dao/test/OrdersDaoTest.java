@@ -22,7 +22,7 @@ public class OrdersDaoTest {
 			OrdersDao dao = new OrdersDao();
 			
 			OrdersVo vo1 = new OrdersVo();
-			vo1.setPrice((long) 15000);
+			vo1.setPrice((long) 0);
 			vo1.setDeli_address("서울시-----123");
 			vo1.setUser_no((long) 1);
 			dao.insert(vo1);
