@@ -88,9 +88,9 @@ public class CartDao {
 
 				 
 				ArrayList temp = new ArrayList();
-				temp.add(title);
-				temp.add(book_count);
-				temp.add( price);
+				temp.add("book_title = "+title);
+				temp.add("book_count = "+book_count);
+				temp.add("cart_price = "+price);
 
 
 				result.add(temp);

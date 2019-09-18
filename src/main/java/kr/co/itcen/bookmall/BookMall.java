@@ -21,7 +21,6 @@ public class BookMall {
 	public static void main(String[] args) {
 		System.out.println("================category====================");
 		
-
 		CategoryDao ct_dao = new CategoryDao();
 
 		List<CategoryVo> ct_list = ct_dao.getList();
@@ -29,7 +28,6 @@ public class BookMall {
 			System.out.println(vo);
 		}
 		System.out.println("=================book========================");	
-	
 		BookDao b_dao = new BookDao();
 
 		ArrayList b_list = b_dao.getList();

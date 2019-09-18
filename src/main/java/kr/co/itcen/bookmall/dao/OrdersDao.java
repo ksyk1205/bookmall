@@ -87,11 +87,11 @@ public class OrdersDao {
 				
 
 				ArrayList temp = new ArrayList();
-				temp.add(no);
-				temp.add(name);
-				temp.add(email);
-				temp.add(price);
-				temp.add(deli_address);
+				temp.add("order_no = "+no);
+				temp.add("user_no = "+name);
+				temp.add("user_email = "+email);
+				temp.add("order_totalprice = "+price);
+				temp.add("order_address = "+deli_address);
 
 
 				result.add(temp);

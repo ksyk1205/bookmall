@@ -85,8 +85,8 @@ public class BookDao {
 
 				
 				ArrayList temp = new ArrayList();
-				temp.add(title);
-				temp.add(price);
+				temp.add("book_title = "+title);
+				temp.add("book_totalprice = "+price);
 				result.add(temp);
 			}
 		} catch (SQLException e) {
